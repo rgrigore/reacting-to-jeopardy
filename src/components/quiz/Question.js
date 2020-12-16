@@ -17,7 +17,7 @@ const Question = props => {
 			<div className="w-50 mx-auto mt-3">
 				<Answer answer={ handleAnswer } />
 			</div>
-			<div className="w-75 mx-auto mt-3">
+			<div className="w-75 mx-auto mt-3">{/* TODO Move this to AnswerValidator */}
 				<div className="text-center">placeholder for answer feedback</div>
 			</div>
 		</div>

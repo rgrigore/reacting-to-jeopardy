@@ -7,8 +7,8 @@ function App() {
 	return (
 		<div>
 			<BrowserRouter>
-				<Link to="/quiz">random</Link><br />{/* TODO Remove this */}
-				<Link to={{ pathname: "/quiz", state: { category: 1 } }}>category</Link>{/* TODO Remove this */}
+				<Link to="/quiz">random</Link><br />{/* Example Links */}
+				<Link to={{ pathname: "/quiz", state: { categoryId: 1, categoryName: "politics" } }}>category</Link>
 
 				<Switch>
 					<Route path="/quiz" component={ QuizPage } />
