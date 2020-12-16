@@ -104,7 +104,7 @@ const QuizPage = props => {
 	return (
 		<div className="container" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
 			<div className="row">
-				<div className="d-flex">
+				<div className="d-flex mt-3">
 					<div className="ms-2 me-auto">Category: <span className="text-capitalize">{ category }</span></div>
 					<div className="me-2">Clue: { progress } / { quizLength }</div>
 				</div>
@@ -113,7 +113,7 @@ const QuizPage = props => {
 				<Question clue={ clue } />
 			</div>
 			<div className="row mt-3">
-				<div className="d-flex justify-content-center">
+				<div className="mb-3 d-flex justify-content-center">
 					<ButtonGroup variant="contained" color="primary" size="small" aria-label="contained primary button group">
 						<Button onClick={ skipButton }>Skip</Button>
 						<Button onClick={ invalidButton }>Invalid</Button>
