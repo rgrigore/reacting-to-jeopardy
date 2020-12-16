@@ -3,14 +3,14 @@ import React, { useState, useEffect, createContext } from "react";
 export const AllTimePointsContext = createContext();
 
 export const AllTimePointsProvider = (props) => {
-    const [AllTimePoints, setAllTimePoints] = useState(localStorage.getItem('allTimePoints') || 0);
+    const [allTimePoints, setAllTimePoints] = useState(localStorage.getItem('allTimePoints') || 0);
 
     useEffect(() => {
-        localStorage.setItem('allTimePoints', AllTimePoints);
-    }, [AllTimePoints]);
+        localStorage.setItem('allTimePoints', allTimePoints);
+    }, [allTimePoints]);
 
     return (
-      <AllTimePointsContext.Provider value={[AllTimePoints, setAllTimePoints]}>
+      <AllTimePointsContext.Provider value={[allTimePoints, setAllTimePoints]}>
           {props.children}
       </AllTimePointsContext.Provider>
     );
