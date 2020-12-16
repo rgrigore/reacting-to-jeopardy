@@ -44,11 +44,12 @@ function GameLauncher() {
         return(
             <div>
                 <ButtonGroup disableElevation variant="contained" color="primary" className={classes.card}>
-                    <Link to={"/random"}>
+                    <Link to={"/quiz"}>
                         <Button variant={"contained"} className={classes.RandomButton} >Random generated</Button>
                     </Link>
                     <Link to={"/categories"}>
                         <Button variant={"contained"} className={classes.CategoryButton} >Choose Category</Button>
+                        {/* <Link to={{ pathname: "/quiz", state: { category: { id: 1, name: "politics"} } }}>category</Link> Category Link */}
                     </Link>
                 </ButtonGroup>
                 <div>
