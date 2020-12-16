@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Answer from './Answer';
+import Answer from './answer/Answer';
 
 const Question = props => {
 
