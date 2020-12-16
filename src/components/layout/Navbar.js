@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar as NavB, Nav } from "react-bootstrap";
+import {Nav, Navbar as NavB} from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import Badge from "@material-ui/core/Badge";
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';

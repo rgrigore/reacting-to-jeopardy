@@ -1,7 +1,7 @@
 import React from "react";
 import logo from '../../img/jeopardy_logo.png';
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Header() {
     return(
