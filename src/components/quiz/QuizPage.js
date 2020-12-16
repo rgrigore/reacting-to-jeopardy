@@ -45,7 +45,7 @@ const QuizPage = props => {
 
 	const categoryClue = useCallback(() => {
 		const axios = require('axios').default;
-		axios.get("http://jservice.io/api/clues", { params: { category: props.location.state.categoryId } })
+		axios.get("http://jservice.io/api/clues", { params: { category: props.location.state.category.id } })
 		.then(response => {
 			const index = Math.floor(Math.random() * response.data.length);
 			setClue(response.data[index]);
@@ -55,9 +55,9 @@ const QuizPage = props => {
 	useEffect(() => {
 		const state = props.location.state;
 
-		if (state != null && state.categoryId != null) {
+		if (state != null && state.category != null) {
 			// console.log("Category: " + props.location.state.categoryId);
-			setCategory(props.location.state.categoryName);
+			setCategory(props.location.state.category.name);
 			setNext({
 				get: categoryClue
 			});
