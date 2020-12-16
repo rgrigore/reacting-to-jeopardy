@@ -102,7 +102,7 @@ const QuizPage = props => {
 	}
 
 	return (
-		<div className="container" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
+		<div className="container mt-5" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
 			<div className="row">
 				<div className="d-flex mt-3">
 					<div className="ms-2 me-auto">Category: <span className="text-capitalize">{ category }</span></div>
