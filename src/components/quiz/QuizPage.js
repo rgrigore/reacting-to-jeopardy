@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
+
+import Question from './Question';
+
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 
 const QuizPage = props => {
 
@@ -62,18 +66,37 @@ const QuizPage = props => {
 		next.get();
 	}, [next])
 
+	const skipButton = () => {
+		// TODO Register strike
+		next.get();
+	}
+
+	const invalidButton = () => {
+		const axios = require('axios').default;
+		axios.post(`http://jservice.io/api/invalid?id=${ clue.id }`);
+		next.get();
+	}
+
+	const quitButton = () => {
+		// TODO Go back to HomePage
+	}
+
 	return (
-		<div className="container-lg" style={{ backgroundColor: "slategrey" }}>
-			<div className="container" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
-				{ clue.id }<br />
-				<button onClick={ next.get }>Next</button>
+		<div className="container" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
+			<div className="row">
+				<Question clue={ clue } />
+			</div>
+			<div className="row mt-3">
+				<div className="d-flex justify-content-center">
+					<ButtonGroup variant="contained" color="primary" size="small" aria-label="contained primary button group">
+						<Button onClick={ skipButton }>Skip</Button>
+						<Button onClick={ invalidButton }>Invalid</Button>
+						<Button onClick={ quitButton }>Quit</Button>
+					</ButtonGroup>
+				</div>
 			</div>
 		</div>
 	)
-}
-
-QuizPage.propTypes = {
-	category: PropTypes.number
 }
 
 export default QuizPage
