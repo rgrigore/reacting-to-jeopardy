@@ -30,8 +30,11 @@ const QuizPage = props => {
 		get: () => {}
 	})
 	const [progress, setProgress] = useState(1);
+	const [correctCount, setCorrectCount] = useState(0);
+	const [wrongCount, setWrongCount] = useState(0);
 
 	const quizLength = 10;
+	const maxStrikes = 3;
 
 	const quitQuiz = () => {
 		// TODO Go back to HomePage
@@ -56,13 +59,11 @@ const QuizPage = props => {
 		const state = props.location.state;
 
 		if (state != null && state.category != null) {
-			// console.log("Category: " + props.location.state.categoryId);
 			setCategory(props.location.state.category.name);
 			setNext({
 				get: categoryClue
 			});
 		} else {
-			// console.log("random");
 			setCategory("random");
 			setNext({
 				get: randomClue
@@ -78,15 +79,30 @@ const QuizPage = props => {
 
 	useEffect(() => {
 		if (progress > quizLength) {
-			// console.log("dead"); // Debug
-			// TODO Lose the quiz
+			// TODO Win the quiz
 
-			// quitQuiz(); // TODO uncomment
+			quitQuiz();
 		}
 	}, [progress])
 
+	useEffect(() => {
+		if (wrongCount >= maxStrikes) {
+			// TODO Lose the quiz
+
+			quitQuiz();
+		}
+	}, [wrongCount])
+
+	const incrementCorrect = useCallback(() => {
+		setCorrectCount(correctCount + 1);
+	}, [correctCount])
+
+	const incrementWrong = useCallback(() => {
+		setWrongCount(wrongCount + 1);
+	}, [wrongCount])
+
 	const skipButton = () => {
-		// TODO Register strike
+		setWrongCount(wrongCount + 1);
 		setProgress(progress + 1);
 		next.get();
 	}
@@ -104,13 +120,18 @@ const QuizPage = props => {
 	return (
 		<div className="container mt-5" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
 			<div className="row">
-				<div className="d-flex mt-3">
-					<div className="ms-2 me-auto">Category: <span className="text-capitalize">{ category }</span></div>
-					<div className="me-2">Clue: { progress } / { quizLength }</div>
+				<div className="d-flex justify-content-between mt-3">
+					<div className="ms-2">Category: <span className="text-capitalize">{ category }</span></div>
+					<div>
+						<span className="mr-1" style={{ color: "green" }}>{ correctCount }</span>
+						<span> / </span>
+						<span className="ml-1" style={{ color: "red" }}>{ wrongCount }</span>
+					</div>
+					<div className="me-2">Question: { progress } / { quizLength }</div>
 				</div>
 			</div>
 			<div className="row mt-3">
-				<Question clue={ clue } />
+				<Question clue={ clue } counters={{ incrementCorrect, incrementWrong }} />
 			</div>
 			<div className="row mt-3">
 				<div className="mb-3 d-flex justify-content-center">
