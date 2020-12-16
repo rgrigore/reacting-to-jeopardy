@@ -46,7 +46,9 @@ const BadgeStyle = {
 const BadgeContentStyle = {
     paddingRight: '20px',
     paddingLeft: '20px',
-    background: 'rgba(224, 224, 224, 1)'
+    background: 'rgba(224, 224, 224, 1)',
+    borderRadius: '15px',
+    border: '1px solid #A9A9A9'
 }
 
 export default Navbar;
