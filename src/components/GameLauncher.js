@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import play from '../img/play.jpg';
-import anchor from '../img/presentor.png';
+import anchor from '../img/presentor2.png';
 
 
 function GameLauncher() {
