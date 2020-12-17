@@ -137,7 +137,7 @@ const QuizPage = props => {
 	}
 
 	return (
-		<div className="container mt-5" style={ containerStyle }>
+		<div className="container mt-5 rounded-3" style={ containerStyle }>
 			<div className="row">
 				<div className="d-flex justify-content-between mt-3">
 					<div className="ms-2" style={infoAreaStyle}>Category: <span className="text-capitalize">{ category }</span></div>

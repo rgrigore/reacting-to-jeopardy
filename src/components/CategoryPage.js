@@ -10,7 +10,7 @@ const CategoryPage = () => {
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
 
-    const count = 9;
+    const count = 12;
 
     useEffect(() => {
         setLoading(true);

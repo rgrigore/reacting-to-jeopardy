@@ -10,8 +10,9 @@ const Question = props => {
 	const [hidden, setHidden] = useState(true);
 
 	const handleAnswer = ev => {
-		const value = document.getElementById("answer-field").value;
-		setUserAnswer(value);
+		const element = document.getElementById("answer-field");
+		setUserAnswer(element.value);
+		element.value = "";
 		setHidden(false);
 		setTimeout(() => {
 			props.nextQuestion();
