@@ -10,9 +10,7 @@ const Sound = () => {
     const [volume, setVolume] = React.useState(0.50);
     const [play, { stop }] = useSound(song, {volume});
     return (
-        <div>
-            <Button onClick={play} onMouseEnter={() => stop()} variant={"contained"} className={classes.RandomButton}>Play with Style!</Button>
-        </div>
+        <Button onClick={play} onMouseEnter={() => stop()} variant={"contained"} className={classes.RandomButton}>Play with Style!</Button>
     )
 };
 
