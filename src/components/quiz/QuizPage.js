@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
 import Question from './Question';
+import { AllTimePointsContext } from '../AllTimePointsContext';
 
 const QuizPage = props => {
 
@@ -33,6 +34,8 @@ const QuizPage = props => {
 	const [correctCount, setCorrectCount] = useState(0);
 	const [wrongCount, setWrongCount] = useState(0);
 	const [changeQuestion, setChangeQuestion] = useState(false);
+
+	const context = useContext(AllTimePointsContext);
 
 	const quizLength = 10;
 	const maxStrikes = 3;
@@ -90,11 +93,12 @@ const QuizPage = props => {
 
 	useEffect(() => {
 		if (progress > quizLength) {
-			// TODO Win the quiz
-
-			quitQuiz();
+			if (changeQuestion) {
+				context.setAllTimePoints(context.allTimePoints + 1000);
+				quitQuiz();
+			}
 		}
-	}, [progress])
+	}, [changeQuestion, context, progress])
 
 	useEffect(() => {
 		if (wrongCount >= maxStrikes) {

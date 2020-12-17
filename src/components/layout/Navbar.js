@@ -7,9 +7,7 @@ import {Link} from "react-router-dom";
 import { AllTimePointsContext } from "../AllTimePointsContext";
 
 function Navbar() {
-    // eslint-disable-next-line no-unused-vars
-    const [allTimePoints, setAllTimePoints] = useContext(AllTimePointsContext);
-    console.log(allTimePoints);
+    const context = useContext(AllTimePointsContext);
 
     return(
         <NavB style={NavbarStyle}>
@@ -22,7 +20,7 @@ function Navbar() {
             </Nav>
             <NavB.Collapse className="justify-content-end" style={BadgeStyle}>
                 <NavB.Text style={BadgeContentStyle}>All-Time score:
-                <Badge badgeContent={allTimePoints} max={50000} anchorOrigin={{vertical: 'bottom', horizontal: 'right'}} color={"secondary"}>
+                <Badge badgeContent={context.allTimePoints} max={50000} anchorOrigin={{vertical: 'bottom', horizontal: 'right'}} color={"secondary"}>
                     <StarOutlinedIcon color={"primary"} fontSize={"large"}/>
                 </Badge>
                 </NavB.Text>
