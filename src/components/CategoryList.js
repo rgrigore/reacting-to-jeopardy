@@ -1,87 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import axios from 'axios';
+import CategoryItem from './CategoryItem';
+import CategoryPage from './CategoryPage';
 
-import '../App.css';
 
 
-class CategoryList extends React.Component {
+const CategoryList = () => {
+    const [ categories, setCategories ] = useState([]);
+    const [ loading, setLoading ] = useState(false);
+    const [ currentPage, setCurrentPage ] = useState(1);
+    const [ categoriesPerPage ] = useState(12);
 
-   
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-            items: [],
-            isLoaded: false
+    useEffect(() => {
+        const fetchCategories = async () => {
+            setLoading(true);
+            const res = await axios.get('http://jservice.io/api/categories?&count=100');
+            setCategories(res.data);
+            setLoading(false);
         }
 
-    }
+        fetchCategories();
+    }, []);
 
-    /**
-     * componentDidMount
-     *
-     * Fetch json array of objects from given url and update state.
-     */
-    componentDidMount() {
-        
-        fetch('http://jservice.io/api/categories?&count=50')
-        //'http://jservice.io/api/clues?&category='
-        //'https://jsonplaceholder.typicode.com/users'
-            .then(res => res.json())
-            .then(json => {
-                this.setState({
-                    items: json,
-                    isLoaded: true, 
-                })
-            }).catch((err) => {
-                console.log(err);
-            });
+    //Get categories
+    const indexOfLastCategory = currentPage * categoriesPerPage;
+    const indexOfFirstCategory = indexOfLastCategory - categoriesPerPage;
+    const currentCategories = categories.slice(indexOfFirstCategory, indexOfLastCategory);
 
-    }
+    //Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    
-    render() {
-
-        const { isLoaded, items } = this.state;
-
-        if (!isLoaded)
-            return <div>Loading...</div>;
-
-        return (
-            
-                //<ul>
-                    
-
-                        <div className="CategoryList">
-                            <div className="card">
-                                {items.map(item => (
-                                <React.Fragment key={item.id}>
-                                    <div className="card-header">
-                                        Category ID: {item.id}
-                                    </div>
-                                    <div className="card-body">
-                                    <h5 className="card-title">Name of the Category of Questions is: </h5>
-                                    <p className="card-text">{item.title}</p>
-                                    <Link to="/category" className="btn btn-primary">Go to Questions!</Link>
-                                    </div>
-                                </React.Fragment>))};
-                            </div>
-                        </div>
-
-                //        {/*<li key={item.id}>
-                //            {/*Name: {item.name} | Email: {item.email}*/}
-                //            {/*Category: {item.category} |*/}
-                //            {/*Category: {item.title}  */}
-                //            {/*Answer: {item.answer}*/}
-                //        {/*</li>*/}*/}
-
-                //    {/*))}
-                //</ul>*/}
-        );
-
-    }
-
+    return (
+        <div className='container mt-5'>
+            <CategoryItem categories={currentCategories} 
+                        loading={loading} />
+            <CategoryPage categoriesPerPage={categoriesPerPage} 
+                    totalCategories={categories.length} 
+                    paginate={paginate} />
+        </div>
+    )
 }
 
-export default CategoryList;
+export default CategoryList; 
