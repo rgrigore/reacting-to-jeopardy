@@ -6,8 +6,14 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const Sound = () => {
     const classes = useStyles();
-    const [play] = useSound(song);
-    return <Button onClick={play} variant={"contained"} className={classes.RandomButton}>Play with Style!</Button>;
+    // eslint-disable-next-line no-unused-vars
+    const [volume, setVolume] = React.useState(0.50);
+    const [play, { stop }] = useSound(song, {volume});
+    return (
+        <div>
+            <Button onClick={play} onMouseEnter={() => stop()} variant={"contained"} className={classes.RandomButton}>Play with Style!</Button>
+        </div>
+    )
 };
 
 const useStyles = makeStyles((theme) => ({

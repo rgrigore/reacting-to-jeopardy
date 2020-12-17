@@ -1,35 +1,3 @@
-// import React from 'react';
-
-// const CategoryPage = ({ categoriesPerPage, totalCategories, paginate }) => {
-//     const pageNumbers = [];
-
-//     for (let i = 1; 1 <= Math.ceil(totalCategories / categoriesPerPage); i++) {
-//         pageNumbers.push(i);
-//     }
-
-//     return (
-//         <nav aria-label="...">
-//             <ul className='pagination'>
-//                 <li className="page-item active">
-//                     <a className="page-link" href="/#">Previous</a>
-//                 </li>
-//                 {pageNumbers.map(number => (
-//                     <li key={number} className='page-item'>
-//                         <a onClick={() => paginate(number)} href='/#!' className='page-link'>
-//                             {number}
-//                         </a>
-//                     </li>
-//                 ))}
-//                 <li className="page-item active">
-//                     <a className="page-link" href="/#">Next</a>
-//                 </li>
-//             </ul>
-//         </nav>
-//     )
-// }
-
-// export default CategoryPage;
-
 import React, { useEffect, useState } from 'react'
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
@@ -42,7 +10,7 @@ const CategoryPage = () => {
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
 
-    const count = 27;
+    const count = 9;
 
     useEffect(() => {
         setLoading(true);
@@ -65,13 +33,13 @@ const CategoryPage = () => {
 
     return (
         <div className="container">
-            <div>
+            <div style={{ marginTop: "10px" }}>
                 <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
                     <Button onClick={ changePage.bind(null, -1) } disabled={ offset === 0 }>Previous</Button>
                     <Button onClick={ changePage.bind(null, 1) }>Next</Button>
                 </ButtonGroup>
             </div>
-            <div>
+            <div style={{ marginTop: "10px" }}>
                 <CategoryList categories={ categories } loading={ loading } />
             </div>
         </div>
