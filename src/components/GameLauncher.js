@@ -49,7 +49,6 @@ function GameLauncher() {
                     </Link>
                     <Link to={"/categories"}>
                         <Button variant={"contained"} className={classes.CategoryButton} >Choose Category</Button>
-                        {/* <Link to={{ pathname: "/quiz", state: { category: { id: 1, name: "politics"} } }}>category</Link> Category Link */}
                     </Link>
                 </ButtonGroup>
                 <div>
