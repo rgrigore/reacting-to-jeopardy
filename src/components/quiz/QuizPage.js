@@ -133,16 +133,16 @@ const QuizPage = props => {
 	}
 
 	return (
-		<div className="container mt-5" style={{ backgroundColor: "lightgrey", maxWidth: "900px" }}>
+		<div className="container mt-5" style={ containerStyle }>
 			<div className="row">
 				<div className="d-flex justify-content-between mt-3">
-					<div className="ms-2">Category: <span className="text-capitalize">{ category }</span></div>
+					<div className="ms-2" style={infoAreaStyle}>Category: <span className="text-capitalize">{ category }</span></div>
 					<div>
 						<span className="mr-1" style={{ color: "green" }}>{ correctCount }</span>
 						<span> / </span>
 						<span className="ml-1" style={{ color: "red" }}>{ wrongCount }</span>
 					</div>
-					<div className="me-2">Question: { progress } / { quizLength }</div>
+					<div className="me-2" style={infoAreaStyle}>Question: { progress } / { quizLength }</div>
 				</div>
 			</div>
 			<div className="row mt-3">
@@ -159,6 +159,19 @@ const QuizPage = props => {
 			</div>
 		</div>
 	)
+}
+
+const containerStyle = {
+	background: 'rgba(224, 224, 224, 0.3)',
+	maxWidth: "900px",
+};
+
+const infoAreaStyle = {
+	background: 'rgba(224, 224, 224, 1)',
+	borderRadius: '15px',
+	border: '1px solid #A9A9A9',
+	paddingRight: '10px',
+	paddingLeft: '10px'
 }
 
 export default QuizPage
