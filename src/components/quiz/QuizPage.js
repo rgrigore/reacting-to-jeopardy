@@ -137,7 +137,7 @@ const QuizPage = props => {
 			<div className="row">
 				<div className="d-flex justify-content-between mt-3">
 					<div className="ms-2" style={infoAreaStyle}>Category: <span className="text-capitalize">{ category }</span></div>
-					<div>
+					<div style={infoAreaStyle}>
 						<span className="mr-1" style={{ color: "green" }}>{ correctCount }</span>
 						<span> / </span>
 						<span className="ml-1" style={{ color: "red" }}>{ wrongCount }</span>
