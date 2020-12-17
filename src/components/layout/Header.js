@@ -1,6 +1,7 @@
 import React from "react";
 import logo from '../../img/jeopardy_logo.png';
 import Navbar from "./Navbar";
+import Sound from "./Sound";
 import {Link} from "react-router-dom";
 
 function Header() {
@@ -9,6 +10,7 @@ function Header() {
             <Link to={"/"}>
                 <img src={logo} alt="logo"/>
             </Link>
+            <Sound />
             <Navbar />
         </header>
     )
