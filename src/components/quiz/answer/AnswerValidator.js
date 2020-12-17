@@ -1,10 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 const AnswerValidator = props => {
-
-	const [message, setMessage] = useState("");
-	const [background, setBackground] = useState("");
 
 	const validate = useCallback(() => {
 		const correctWords = props.answers.correct.split(" ");
@@ -28,31 +25,35 @@ const AnswerValidator = props => {
 		return true;
 	}, [props.answers]);
 
-	useEffect(() => {
-		if (props.check) {
-			if (validate()) {
-				props.counters.incrementCorrect();
-				setMessage("Correct answer!");
-				setBackground("alert-success");
-			} else {
-				props.counters.incrementWrong();
-				setMessage("Answer: " + props.answers.correct);
-				setBackground("alert-danger");
-			}
+	if (props.check) {
+		if (validate()) {
+			// props.incrementCorrect();
+			return (
+				<div className="text-center alert alert-success" role="alert">
+					Correct answer!
+				</div>
+			)
+		} else {
+			// props.incrementWrong();
+			return (
+				<div className="text-center alert alert-danger" role="alert">
+					{ "Answer: " + props.answers.correct }
+				</div>
+			)
 		}
-	}, [props.answers.correct, props.check, props.counters, validate])
-	
-	return (
-		<div className={ "text-center alert " + background } role="alert">
-			{ message }
-		</div>
-	)
+	} else {
+		return (
+			<div className="text-center alert alert-danger" role="alert"></div>
+		);
+	}
 }
 
 AnswerValidator.propTypes = {
 	answers: PropTypes.object.isRequired,
-	counters: PropTypes.object.isRequired,
-	check: PropTypes.bool.isRequired
+	// counters: PropTypes.object.isRequired,
+	check: PropTypes.bool.isRequired,
+	incrementCorrect: PropTypes.func.isRequired,
+	incrementWrong: PropTypes.func.isRequired
 }
 
 export default AnswerValidator

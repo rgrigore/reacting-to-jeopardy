@@ -32,27 +32,38 @@ const QuizPage = props => {
 	const [progress, setProgress] = useState(1);
 	const [correctCount, setCorrectCount] = useState(0);
 	const [wrongCount, setWrongCount] = useState(0);
+	const [changeQuestion, setChangeQuestion] = useState(false);
 
 	const quizLength = 10;
 	const maxStrikes = 3;
 
 	const quitQuiz = () => {
-		// TODO Go back to HomePage
+		window.location.replace("/");
 	}
 
 	const randomClue = () => {
+		setChangeQuestion(false);
+
 		const axios = require('axios').default;
 		axios.get("http://jservice.io/api/random")
-		.then(response => setClue(response.data[0]));
+		.then(response => {
+			setClue(response.data[0]);
+			setChangeQuestion(true);
+		})
+		.catch(() => {});
 	}
 
 	const categoryClue = useCallback(() => {
+		setChangeQuestion(false);
+
 		const axios = require('axios').default;
 		axios.get("http://jservice.io/api/clues", { params: { category: props.location.state.category.id } })
 		.then(response => {
 			const index = Math.floor(Math.random() * response.data.length);
 			setClue(response.data[index]);
-		});
+			setChangeQuestion(true);
+		})
+		.catch(() => {});
 	}, [props.location.state])
 
 	useEffect(() => {
@@ -93,18 +104,22 @@ const QuizPage = props => {
 		}
 	}, [wrongCount])
 
-	const incrementCorrect = useCallback(() => {
+	const incrementCorrect = () => {
 		setCorrectCount(correctCount + 1);
-	}, [correctCount])
+	}
 
-	const incrementWrong = useCallback(() => {
+	const incrementWrong = () => {
 		setWrongCount(wrongCount + 1);
-	}, [wrongCount])
+	}
+
+	const nextQuestion = () => {
+		setProgress(progress + 1);
+		next.get();
+	}
 
 	const skipButton = () => {
 		setWrongCount(wrongCount + 1);
-		setProgress(progress + 1);
-		next.get();
+		nextQuestion();
 	}
 
 	const invalidButton = () => {
@@ -131,7 +146,7 @@ const QuizPage = props => {
 				</div>
 			</div>
 			<div className="row mt-3">
-				<Question clue={ clue } counters={{ incrementCorrect, incrementWrong }} />
+				<Question clue={ clue } incrementCorrect={ incrementCorrect } incrementWrong={ incrementWrong } changeQuestion={ changeQuestion } nextQuestion={ nextQuestion } />
 			</div>
 			<div className="row mt-3">
 				<div className="mb-3 d-flex justify-content-center">

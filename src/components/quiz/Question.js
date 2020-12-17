@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Answer from './answer/Answer';
@@ -13,15 +13,16 @@ const Question = props => {
 		const value = document.getElementById("answer-field").value;
 		setUserAnswer(value);
 		setHidden(false);
+		setTimeout(() => {
+			props.nextQuestion();
+		}, 3000);
 	}
 
-	// useEffect(() => {
-	// 	if (!hidden) {
-	// 		return (() => {
-	// 			setHidden(true);
-	// 		})
-	// 	}
-	// }, [hidden])
+	useEffect(() => {
+		if (props.changeQuestion) {
+			setHidden(true);
+		}
+	}, [props.changeQuestion])
 
 	return (
 		<div>
@@ -32,7 +33,12 @@ const Question = props => {
 				<Answer answer={ handleAnswer } />
 			</div>
 			<div className="w-75 mx-auto mt-3" hidden={ hidden }>
-				<AnswerValidator answers={{ user: userAnswer, correct:props.clue.answer }} counters={ props.counters } check={ !hidden } />
+				<AnswerValidator
+					answers={{ user: userAnswer, correct:props.clue.answer }}
+					incrementCorrect={ props.incrementCorrect }
+					incrementWrong={ props.incrementWrong }
+					check={ !hidden }
+				/>
 			</div>
 		</div>
 	)
@@ -40,7 +46,11 @@ const Question = props => {
 
 Question.propTypes = {
 	clue: PropTypes.object.isRequired,
-	counters: PropTypes.object.isRequired
+	// counters: PropTypes.object.isRequired
+	incrementCorrect: PropTypes.func.isRequired,
+	incrementWrong: PropTypes.func.isRequired,
+	changeQuestion: PropTypes.bool.isRequired,
+	nextQuestion: PropTypes.func.isRequired
 }
 
 export default Question;
