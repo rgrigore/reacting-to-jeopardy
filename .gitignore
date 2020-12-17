@@ -23,6 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 .vscode
-/Header.js
-/App.js
-/App.css
