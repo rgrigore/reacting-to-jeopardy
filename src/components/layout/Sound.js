@@ -6,8 +6,8 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const Sound = () => {
     const classes = useStyles();
-    // eslint-disable-next-line no-unused-vars
-    const [volume, setVolume] = React.useState(0.50);
+    
+    const volume = 0.50;
     const [play, { stop }] = useSound(song, {volume});
     return (
         <Button onClick={play} onMouseEnter={() => stop()} variant={"contained"} className={classes.RandomButton}>Play with Style!</Button>
