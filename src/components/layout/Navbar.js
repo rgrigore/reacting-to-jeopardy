@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Badge from "@material-ui/core/Badge";
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 import {Link} from "react-router-dom";
+
 import { AllTimePointsContext } from "../AllTimePointsContext";
 
 function Navbar() {

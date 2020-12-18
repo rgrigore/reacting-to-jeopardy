@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
@@ -46,4 +46,4 @@ const CategoryPage = () => {
     )
 }
 
-export default CategoryPage
+export default CategoryPage;

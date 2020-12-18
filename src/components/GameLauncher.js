@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
+
 import play from '../img/play.jpg';
 import anchor from '../img/presentor2.png';
 
@@ -93,6 +94,6 @@ const useStyles = makeStyles((theme) => ({
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
         boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
     },
-}));
+}))
 
 export default GameLauncher;

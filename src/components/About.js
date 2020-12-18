@@ -1,7 +1,8 @@
 import React from "react";
 import YouTube from 'react-youtube';
-import anchor from "../img/presentor.png";
 import {makeStyles} from "@material-ui/core/styles";
+
+import anchor from "../img/presentor.png";
 
 function About() {
     const classes = useStyles();
@@ -13,7 +14,7 @@ function About() {
             // https://developers.google.com/youtube/player_parameters
             autoplay: 1,
         },
-    };
+    }
 
     const _onReady = (event) => {
         // access to player in all event handlers via event.target

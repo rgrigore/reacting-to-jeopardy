@@ -29,7 +29,7 @@ const QuizPage = props => {
 	const [category, setCategory] = useState("");
 	const [next, setNext] = useState({
 		get: () => {}
-	})
+	});
 	const [progress, setProgress] = useState(1);
 	const [correctCount, setCorrectCount] = useState(0);
 	const [wrongCount, setWrongCount] = useState(0);
@@ -53,7 +53,7 @@ const QuizPage = props => {
 			setClue(response.data[0]);
 			setChangeQuestion(true);
 		})
-		.catch(() => {});
+		.catch(() => {})
 	}
 
 	const categoryClue = useCallback(() => {
@@ -66,7 +66,7 @@ const QuizPage = props => {
 			setClue(response.data[index]);
 			setChangeQuestion(true);
 		})
-		.catch(() => {});
+		.catch(() => {})
 	}, [props.location.state])
 
 	useEffect(() => {
@@ -85,7 +85,7 @@ const QuizPage = props => {
 		}
 
 		setProgress(1);
-	}, [categoryClue, props.location.state]);
+	}, [categoryClue, props.location.state])
 
 	useEffect(() => {
 		next.get();
@@ -168,7 +168,7 @@ const QuizPage = props => {
 const containerStyle = {
 	background: 'rgba(224, 224, 224, 0.3)',
 	maxWidth: "900px",
-};
+}
 
 const infoAreaStyle = {
 	background: 'rgba(224, 224, 224, 1)',
@@ -178,4 +178,4 @@ const infoAreaStyle = {
 	paddingLeft: '10px'
 }
 
-export default QuizPage
+export default QuizPage;

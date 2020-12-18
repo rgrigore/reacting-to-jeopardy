@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 const AnswerValidator = props => {
 
@@ -23,7 +23,7 @@ const AnswerValidator = props => {
 		}
 
 		return true;
-	}, [props.answers]);
+	}, [props.answers])
 
 	if (props.check) {
 		if (validate()) {
@@ -44,7 +44,7 @@ const AnswerValidator = props => {
 	} else {
 		return (
 			<div className="text-center alert alert-danger" role="alert"></div>
-		);
+		)
 	}
 }
 

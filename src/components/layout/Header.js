@@ -1,8 +1,9 @@
 import React from "react";
 import logo from '../../img/jeopardy_logo.png';
+import {Link} from "react-router-dom";
+
 import Navbar from "./Navbar";
 import Sound from "./Sound";
-import {Link} from "react-router-dom";
 
 function Header() {
     return(
