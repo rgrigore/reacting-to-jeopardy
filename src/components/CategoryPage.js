@@ -15,7 +15,7 @@ const CategoryPage = () => {
     useEffect(() => {
         setLoading(true);
         const axios = require("axios").default;
-        axios.get("http://jservice.io/api/categories", {
+        axios.get("https://jservice.io/api/categories", {
             params: {
                 count: count,
                 offset: offset

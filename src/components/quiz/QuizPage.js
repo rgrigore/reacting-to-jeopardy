@@ -48,7 +48,7 @@ const QuizPage = props => {
 		setChangeQuestion(false);
 
 		const axios = require('axios').default;
-		axios.get("http://jservice.io/api/random")
+		axios.get("https://jservice.io/api/random")
 		.then(response => {
 			setClue(response.data[0]);
 			setChangeQuestion(true);
@@ -60,7 +60,7 @@ const QuizPage = props => {
 		setChangeQuestion(false);
 
 		const axios = require('axios').default;
-		axios.get("http://jservice.io/api/clues", { params: { category: props.location.state.category.id } })
+		axios.get("https://jservice.io/api/clues", { params: { category: props.location.state.category.id } })
 		.then(response => {
 			const index = Math.floor(Math.random() * response.data.length);
 			setClue(response.data[index]);
@@ -128,7 +128,7 @@ const QuizPage = props => {
 
 	const invalidButton = () => {
 		const axios = require('axios').default;
-		axios.post(`http://jservice.io/api/invalid?id=${ clue.id }`);
+		axios.post(`https://jservice.io/api/invalid?id=${ clue.id }`);
 		next.get();
 	}
 
