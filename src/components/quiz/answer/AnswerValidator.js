@@ -4,25 +4,20 @@ import PropTypes from 'prop-types';
 const AnswerValidator = props => {
 
 	const validate = useCallback(() => {
-		const correctWords = props.answers.correct.split(" ");
-		const userWords = props.answers.user.split(" ");
+		const correctWords = props.answers.correct.replace(/<\/*[^>]+>/im, "").toLowerCase().split(" ");
+		const userWords = props.answers.user.replace(/<\/*[^>]+>/im, "").toLowerCase().split(" ");
 		
-		for (const word of correctWords) {
-			let found = false;
-
+		let found = Array(correctWords.length).fill(false);
+		for (let i = 0; i < correctWords.length; i++) {
 			for (const word2 of userWords) {
-				if (word === word2) {
-					found = true;
+				if (correctWords[i] === word2) {
+					found[i] = true;
 					break;
 				}
 			}
-
-			if (!found) {
-				return false;
-			}
 		}
 
-		return true;
+		return found.every(v => v === true);
 	}, [props.answers])
 
 	if (props.check) {
